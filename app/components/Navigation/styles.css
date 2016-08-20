@@ -10,6 +10,7 @@
   display: flex;
   padding: 10px 50px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .avatar {
@@ -19,7 +20,7 @@
   overflow: hidden;
 }
 
-.avatar > img {
+.avatar img {
   max-width:100%;
   max-height:100%;
 }

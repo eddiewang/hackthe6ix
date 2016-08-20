@@ -15,7 +15,7 @@ function Navigation() {
     <div className={styles.navigation}>
       <div className={styles.wrapper}>
         <div className={styles.avatar}>
-          <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/11182059_10205498751161817_2415487134910777160_n.jpg?oh=95ae3f981e538d0ff0c16ef7b08cd298&oe=58498A1D" />
+          <Link to='/app/journal'><img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-1/p160x160/11182059_10205498751161817_2415487134910777160_n.jpg?oh=95ae3f981e538d0ff0c16ef7b08cd298&oe=58498A1D" /></Link>
         </div>
         <div className={styles.links}>
           <ul>

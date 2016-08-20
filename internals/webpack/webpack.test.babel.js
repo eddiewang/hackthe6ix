@@ -85,6 +85,7 @@ module.exports = {
     alias: {
       // required for enzyme to work properly
       sinon: 'sinon/pkg/sinon',
+      moment: 'moment/moment.js',
     },
   },
 };

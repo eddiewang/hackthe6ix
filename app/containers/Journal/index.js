@@ -12,14 +12,19 @@ import styles from './styles.css';
 import Text from 'components/Text';
 import Post from 'components/Post';
 import PostBlock from 'components/PostBlock';
+import PostEditor from 'containers/PostEditor';
+import { Editor, EditorState } from 'draft-js';
+import * as moment from 'moment';
 
 export class Journal extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
       isNewPost: false,
+      editorState: EditorState.createEmpty(),
     }
     this.handleClick = this.handleClick.bind(this);
+    this.onChange = (editorState) => this.setState({editorState});
   }
 
   handleClick() {
@@ -27,14 +32,20 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
   }
 
   render() {
+    const {editorState} = this.state;
     return (
       <div className={styles.journal}>
         { this.state.isNewPost ?
           <div className={styles.newPostModal}>
+
+            <PostEditor editorState={this.state.editorState} handleChange={this.onChange}/>
           </div> :
           null
         }
         <div className={styles.postBlockContainer}>
+          <PostBlock />
+          <PostBlock />
+          <PostBlock />
           <PostBlock />
           <PostBlock />
           <PostBlock />
@@ -48,7 +59,7 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
           <Post />
           <Post />
         </div>
-          <a onClick={this.handleClick} className={styles.button}>
+          <a onClick={this.handleClick} className={styles.addPost}>
           </a>
       </div>
     );

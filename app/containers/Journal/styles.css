@@ -9,6 +9,7 @@
   flex: 1;
   background: rgba(103, 128, 159, 0.1);
   border-right: 1px solid #ddd;
+  overflow-y: scroll;
 }
 
 .postsContainer {
@@ -21,7 +22,7 @@
   overflow-y: scroll;
 }
 
-.button {
+.addPost {
   display: block;
   position: fixed;
   bottom: 0;
@@ -38,5 +39,5 @@
   position: fixed;
   height: 100%;
   width: 100vw;
-  background: black;
+  background: white;
 }

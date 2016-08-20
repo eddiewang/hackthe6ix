@@ -1,3 +1,29 @@
 .analytics { /* stylelint-disable */
+  width: 100%;
+  overflow-y: scroll;
+}
 
+.lineChartPanel {
+  display: flex;
+  width: 100vw;
+  height: 600px;
+  padding: 30px;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.pieChartsPanel {
+  display: flex;
+  height: 1000px;
+  width: 100vw;
+  background: black;
+}
+
+.emoticonFilters {
+  flex:1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: blue;
 }
