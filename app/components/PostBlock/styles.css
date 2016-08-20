@@ -1,0 +1,8 @@
+.postBlock {
+  padding: 20px;
+  height: 150px;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+}

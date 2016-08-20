@@ -1,0 +1,22 @@
+.post { /* stylelint-disable */
+  height: 100%;
+}
+
+.postContainer {
+  width: 80%;
+  max-width: 700px;
+  margin-bottom: 100px;
+}
+
+.selfie {
+  float: right;
+  height: 50px;
+  width: 50px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.selfie img {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Kievet";
+  src: url(static/fonts/KievitWeb-Bold.woff);
+}
+
+@font-face {
+  font-family: "Charter";
+  src: url(static/fonts/Charter.woff);
+}
+
+.post-headline {
+  display: inline-block;
+  font-size: 32px;
+  font-family: "Kievet", Helvetica;
+  margin-bottom: 24px;
+}
+
+.post {
+  display: block;
+  font-size: 21px;
+  font-family: "Charter", Helvetica;
+  line-height: 34px;
+  margin-bottom: 30px;
+}
+
+.post::selection {
+  background: #C5EFF7; /* WebKit/Blink Browsers */
+}
+
+.block-date {
+  display: block;
+  color: #bbb;
+  font-family: "Kievet", Helvetica;
+  font-size: 18px;
+}
+
+.block-preview {
+  margin: 0;
+  display: inline-block;
+  font-size: 16px;
+  color: #bbb;
+  line-height: 22px;
+  height: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

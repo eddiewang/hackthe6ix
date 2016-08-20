@@ -34,6 +34,67 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/app',
+      name: 'mainApp',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          System.import('containers/MainApp/reducer'),
+          System.import('containers/MainApp/sagas'),
+          System.import('containers/MainApp'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('app', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+      childRoutes: [{
+        path: '/app/journal',
+        name: 'journal',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('containers/Journal/reducer'),
+            System.import('containers/Journal/sagas'),
+            System.import('containers/Journal'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('journal', reducer.default);
+            injectSagas(sagas.default);
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+      }, {
+        path: '/app/analytics',
+        name: 'analytics',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            System.import('containers/Analytics/reducer'),
+            System.import('containers/Analytics/sagas'),
+            System.import('containers/Analytics'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('analytics', reducer.default);
+            injectSagas(sagas.default);
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
+      }]
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
