@@ -23,7 +23,7 @@ export class PostEditor extends React.Component { // eslint-disable-line react/p
         <div className={styles.editorWrapper}>
           <Editor editorState={this.props.editorState} onChange={(state) => this.props.handleChange(state)} />
         </div>
-        <button className={styles.button}>Submit</button>
+        <button onClick={this.props.handleIndicoClick} className={styles.button}>Indico Analysis</button>
       </div>
     );
   }

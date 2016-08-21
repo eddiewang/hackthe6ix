@@ -22,5 +22,4 @@ const selectJournal = () => createSelector(
 export default selectJournal;
 export {
   selectJournalDomain,
-  selectEditorState,
 };

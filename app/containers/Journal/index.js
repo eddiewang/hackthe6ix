@@ -15,7 +15,7 @@ import PostBlock from 'components/PostBlock';
 import PostEditor from 'containers/PostEditor';
 import { Editor, EditorState, convertToRaw } from 'draft-js';
 
-import { editPost } from './actions';
+import { editPost, indicoSubmit, fetchPosts} from './actions';
 
 export class Journal extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -25,17 +25,33 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
       editorState: EditorState.createEmpty(),
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleIndicoClick = this.handleIndicoClick.bind(this);
+    this.renderPosts = this.renderPosts.bind(this);
     this.onChange = (editorState) => {
       const contentState = editorState.getCurrentContent();
       const rawData = convertToRaw(contentState);
       const stringData = rawData.blocks.map((block) => block.text).join();
-      this.props.dispatch(editPost(rawData));
+      this.props.dispatch(editPost({rawData, stringData}));
       this.setState({editorState});
     };
   }
 
+  componentWillMount() {
+    this.props.dispatch(fetchPosts());
+  }
+
   handleClick() {
     this.setState({isNewPost: !this.state.isNewPost});
+  }
+
+  handleIndicoClick() {
+    this.props.dispatch(indicoSubmit());
+  }
+
+  renderPosts() {
+    Object.keys(this.props.posts.posts).forEach((key) => {
+      return (<Post data={this.props.posts.posts[key].contentState} />);
+    })
   }
 
   render() {
@@ -44,26 +60,15 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
       <div className={styles.journal}>
         { this.state.isNewPost ?
           <div className={styles.newPostModal}>
-            <PostEditor editorState={this.state.editorState} handleChange={this.onChange}/>
+            <PostEditor handleIndicoClick={this.handleIndicoClick} editorState={this.state.editorState} handleChange={this.onChange}/>
           </div> :
           null
         }
         <div className={styles.postBlockContainer}>
           <PostBlock />
-          <PostBlock />
-          <PostBlock />
-          <PostBlock />
-          <PostBlock />
-          <PostBlock />
-          <PostBlock />
         </div>
         <div className={styles.postsContainer}>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {this.props.posts.posts ? this.renderPosts() : null }
         </div>
           <a onClick={this.handleClick} className={styles.addPost}>
           </a>

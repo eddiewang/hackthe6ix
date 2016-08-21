@@ -17,6 +17,23 @@ export function postRequest(url, body) {
   });
 }
 
+export function getRequest(url, body) {
+  return new Promise((resolve, reject) => {
+    axios({
+      url,
+      method: 'GET',
+      data: body,
+      timeout: 20000,
+    })
+    .then((result) => {
+      resolve(result);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+  });
+}
+
 export function fakeRequest(url, body) {
   return new Promise((resolve, reject) => {
     console.log(body);
