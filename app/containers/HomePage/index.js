@@ -10,16 +10,39 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+import styles from './styles.css';
+import Text from 'components/Text';
+import { push } from 'react-router-redux';
+import { connect } from 'react-redux';
 
+export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.changeRoute = this.changeRoute.bind(this);
+  }
+  changeRoute() {
+    this.props.changeRoute('/app/journal');
+  }
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div onClick={this.changeRoute} className={styles.container} >
+        <div className={styles.logo}>
+          <div>
+          <Text type="logo">reflct</Text>
+          </div>
+          <Text type="logo-sub">The world's first intelligent diary</Text>
+        </div>
+      </div>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    changeRoute: (url) => dispatch(push(url)),
+  }
+);
+
+export default connect(null, mapDispatchToProps)(HomePage);

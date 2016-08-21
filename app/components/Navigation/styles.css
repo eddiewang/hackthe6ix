@@ -1,6 +1,6 @@
 .navigation { /* stylelint-disable */
   display: flex;
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #DDD;
   flex: 1;
   align-items: center;
 }

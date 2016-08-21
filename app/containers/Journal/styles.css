@@ -30,9 +30,74 @@
   border-radius: 70px;
   margin: 50px;
   background: #2C3E50;
-  height: 70px;
-  width: 70px;
+  height: 60px;
+  width: 60px;
+  padding: 20px;
   box-shadow: -1px 1px 8px 0px rgba(0,0,0,0.50);
+}
+
+
+.iconplus:before, .iconpluscross:before {
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate3D(0, -50%, 0) rotate(0);
+          transform: translate3D(0, -50%, 0) rotate(0);
+  width: 100%;
+  height: 0.125em;
+  position: absolute;
+  display: block;
+  background-color: #f0f0f0;
+  border-radius: 0.125em;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  content: '';
+  -webkit-transform-origin: center;
+            transform-origin: center;
+}
+
+.iconplus, .iconpluscross {
+  position: fixed;
+    cursor: pointer;
+    display: inline-block;
+  width: 30px;
+  height: 30px;
+  padding: 20px;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 60px;
+  margin-right: 60px;
+
+  color: white;
+}
+
+
+.iconplus:after, .iconpluscross:after {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3D(-50%, -50%, 0) rotate(0);
+          transform: translate3D(-50%, -50%, 0) rotate(0);
+  width: 0.125em;
+  height: 100%;
+  position: absolute;
+  display: block;
+
+  background-color: #f0f0f0;
+  border-radius: 0.125em;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  content: '';
+  -webkit-transform-origin: center;
+            transform-origin: center;
+}
+
+.isactive:before {
+  -webkit-transform: translate3D(0, -50%, 0) rotate(135deg);
+            transform: translate3D(0, -50%, 0) rotate(135deg);
+}
+
+.isactive:after {
+  -webkit-transform: translate3D(-50%, -50%, 0) rotate(135deg);
+            transform: translate3D(-50%, -50%, 0) rotate(135deg);
 }
 
 .newPostModal {
@@ -40,4 +105,12 @@
   height: 100%;
   width: 100vw;
   background: white;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover span, .link:active span{
+  color: black !important;
 }

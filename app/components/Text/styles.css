@@ -63,4 +63,15 @@
   text-align: center;
   color: #2C3E50;
   margin-bottom: 20px;
+  width: 100%;
+}
+
+.logo {
+  font-family: "Kievet";
+  font-size: 64px;
+}
+
+.logo-sub {
+  font-family: Helvetica;
+  font-size: 18px;
 }

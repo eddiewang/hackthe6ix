@@ -15,6 +15,7 @@ import PostEditor from 'containers/PostEditor';
 import { Editor, EditorState, convertToRaw } from 'draft-js';
 
 import { editPost, indicoSubmit, fetchPosts} from './actions';
+import cx from 'classnames';
 
 export class Journal extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -54,7 +55,11 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
       console.log(key)
-      postArray.push(<Post keywords={this.props.posts.posts[key].keywords} emotions={this.props.posts.posts[key].emotions} key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+      postArray.push(
+        <div id={key}>
+          <Post keywords={this.props.posts.posts[key].keywords} emotions={this.props.posts.posts[key].emotions} key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />
+        </div>
+      );
     });
     return postArray.reverse();
   }
@@ -62,13 +67,21 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
   renderPostBlock() {
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
-      postArray.push(<PostBlock key={key} date={this.props.posts.posts[key].dateAlt} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+      postArray.push(
+
+        <a className={styles.link} href={`#${key}`}>
+          <PostBlock key={key} date={this.props.posts.posts[key].dateAlt} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />
+        </a>
+      );
     });
     return postArray.reverse();
   }
 
   render() {
     const {editorState} = this.state;
+    let cn = cx(styles.iconpluscross, {
+      [styles.isactive]: this.state.isNewPost
+    });
     return (
       <div className={styles.journal}>
         { this.state.isNewPost ?
@@ -83,7 +96,9 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
         <div className={styles.postsContainer}>
           {this.props.posts.posts ? this.renderPosts() : null }
         </div>
-          <a onClick={this.handleClick} className={styles.addPost}>
+          <a onClick={this.handleClick} className={`${styles.addPost}`}>
+            <div className={cn}>
+            </div>
           </a>
       </div>
     );

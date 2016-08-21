@@ -142,6 +142,37 @@ const selectSurprise = () => createSelector(
   }
 );
 
+const selectSentiment = () => createSelector(
+  selectPosts(),
+  (posts) => {
+    const sentiment = [];
+    posts.map((each) => {
+      sentiment.push(each[1].sentiment)
+    });
+    let dataSet = {...ogDataSet}
+    dataSet.label = 'Sentiment';
+    dataSet.data = sentiment;
+    dataSet.borderColor = coreColors.sadness;
+    dataSet.backgroundColor = coreColors.sadness;
+    return dataSet;
+  }
+);
+
+const selectSum = () => createSelector(
+  selectJoy(),
+  selectAnger(),
+  selectFear(),
+  selectSadness(),
+  selectSurprise(),
+  (joy, anger, fear, sadness, surprise) => {
+    const joyData = joy.data.reduce((a, b) => a + b);
+    const angerData = anger.data.reduce((a, b) => a + b);
+    const fearData = fear.data.reduce((a, b) => a + b);
+    const sadnessData = sadness.data.reduce((a, b) => a + b);
+    const surpriseData = surprise.data.reduce((a, b) => a + b);
+    return [joyData, angerData, fearData, sadnessData, surpriseData]
+  }
+);
 
 
 
@@ -153,4 +184,6 @@ export {
   selectFear,
   selectSadness,
   selectSurprise,
+  selectSentiment,
+  selectSum
 };

@@ -11,9 +11,12 @@ import {
   selectAnger,
   selectFear,
   selectSadness,
-  selectSurprise, } from './selectors';
+  selectSurprise,
+  selectSentiment,
+  selectSum,
+} from './selectors';
 import styles from './styles.css';
-import {Line} from 'react-chartjs-2';
+import {Line, Pie} from 'react-chartjs-2';
 import { selectPosts } from 'containers/Journal/selectors';
 import { createStructuredSelector } from 'reselect';
 import Text from 'components/Text';
@@ -21,7 +24,7 @@ import Text from 'components/Text';
 export class Analytics extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
       datasets: [
         this.props.joy,
         this.props.anger,
@@ -30,7 +33,32 @@ export class Analytics extends React.Component { // eslint-disable-line react/pr
         this.props.surprise,
       ]
     };
-    console.log(data)
+    const sentiment = {
+      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+      datasets: [
+        this.props.sentiment
+      ]
+    };
+    const pie = {
+       labels: [
+           "Joy",
+           "Anger",
+           "Fear",
+           "Sadness",
+           "Surprise"
+       ],
+       datasets: [
+           {
+               data: this.props.sum,
+               backgroundColor: [
+                "#b2d8ff",
+                 "#d1ffb5",
+                 "#adf9f4",
+                 "#ebffae",
+                 "#c6b7ff"
+               ]
+           }]
+    };
     return (
       <div className={styles.analytics}>
         <div className={styles.lineChartPanel}>
@@ -48,13 +76,33 @@ export class Analytics extends React.Component { // eslint-disable-line react/pr
             />
           </div>
         </div>
-        <div className={styles.statsPanel}>
-          <div className={styles.sentiment}>
-            <Text type="sentiment">32.3</Text>
+        <div className={styles.secondPanel}>
+          <div className={styles.mainLineChart}>
+            <Text type="analytics-title">Trailing Happiness Data</Text>
+            <Line
+              data={sentiment}
+              width={450}
+              height={400}
+              options={{
+                legend: {
+                  position: 'top',
+                  display: false
+                }
+              }}
+            />
           </div>
-        </div>
-        <div className={styles.pieChartsPanel}>
-          <div className={styles.pieChart}>
+          <div className={styles.mainLineChart}>
+            <Text type="analytics-title">Emotional Sum State</Text>
+            <Pie
+              data={pie}
+              width={450}
+              height={400}
+              options={{
+                legend: {
+                  position: 'top'
+                }
+              }}
+            />
           </div>
         </div>
       </div>
@@ -69,6 +117,8 @@ const mapStateToProps = createStructuredSelector({
   fear: selectFear(),
   sadness: selectSadness(),
   surprise: selectSurprise(),
+  sentiment: selectSentiment(),
+  sum: selectSum(),
 });
 
 function mapDispatchToProps(dispatch) {
