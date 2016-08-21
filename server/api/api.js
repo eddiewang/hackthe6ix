@@ -7,12 +7,20 @@ indico.apiKey = "a68f0a5cfc0ffdbe7725d0b08b787e4d";
 
 router.post('/emotions', (req, res) => {
   const { stringState } = req.body;
-  indico
-    .emotion(stringState)
-    .then((data) => {
-      const post = {...req.body, emotions: data, userId: 1}
-      fb.saveEntry(post)
-      res.status(200).json(post);
+  const promiseEmotion = indico.emotion(stringState);
+  const promiseSentiment = indico.sentiment(stringState);
+  const promiseKeywords = indico.keywords(stringState);
+
+  Promise.all([promiseEmotion, promiseSentiment, promiseKeywords])
+    .then(([emotion, sentiment, keywords]) => {
+      const postObject = {
+        ...req.body,
+        emotion,
+        sentiment,
+        keywords,
+      }
+      console.log(postObject);
+      res.status(200).json(postObject);
     })
     .catch((err) => {
       console.log(err);
