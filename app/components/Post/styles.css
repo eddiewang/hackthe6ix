@@ -1,5 +1,6 @@
 .post { /* stylelint-disable */
   height: 100%;
+  margin-bottom: none;
 }
 
 .postContainer {
@@ -19,4 +20,26 @@
 .selfie img {
   height: 100%;
   width: 100%;
+}
+
+.emojiContainer img {
+  height: 99%;
+  width: 99%;
+}
+
+.emojiContainer {
+  float: right;
+  margin-top: none;
+}
+
+.emojiContainer ul {
+  list-style: none;
+}
+
+.emojiContainer li {
+  display: inline-block;
+  margin-left: 10px;
+  height: 40px;
+  width: 40px;
+  margin: 2px;
 }
