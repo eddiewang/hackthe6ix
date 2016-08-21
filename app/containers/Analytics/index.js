@@ -22,23 +22,19 @@ import { createStructuredSelector } from 'reselect';
 import Text from 'components/Text';
 
 export class Analytics extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    const data = {
-      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
-      datasets: [
-        this.props.joy,
-        this.props.anger,
-        this.props.fear,
-        this.props.sadness,
-        this.props.surprise,
-      ]
-    };
-    const sentiment = {
-      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
-      datasets: [
-        this.props.sentiment
-      ]
-    };
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasMounted: false,
+    }
+  }
+  componentDidMount() {
+    let that = this;
+    setTimeout(function() {
+      that.setState({hasMounted: true});
+    }, 1500)
+  }
+  renderPieChart() {
     const pie = {
        labels: [
            "Joy",
@@ -58,6 +54,47 @@ export class Analytics extends React.Component { // eslint-disable-line react/pr
                  "#c6b7ff"
                ]
            }]
+    };
+    return (<Pie
+              data={pie}
+              width={450}
+              height={400}
+              options={{
+                legend: {
+                  position: 'top'
+                }
+              }}
+            />);
+  }
+  renderLineChart() {
+    const sentiment = {
+      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+      datasets: [
+        this.props.sentiment
+      ]
+    };
+    return (<Line
+              data={sentiment}
+              width={450}
+              height={400}
+              options={{
+                legend: {
+                  position: 'top',
+                  display: false
+                }
+              }}
+            />);
+  }
+  render() {
+    const data = {
+      labels: ['September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+      datasets: [
+        this.props.joy,
+        this.props.anger,
+        this.props.fear,
+        this.props.sadness,
+        this.props.surprise,
+      ]
     };
     return (
       <div className={styles.analytics}>
@@ -79,30 +116,11 @@ export class Analytics extends React.Component { // eslint-disable-line react/pr
         <div className={styles.secondPanel}>
           <div className={styles.mainLineChart}>
             <Text type="analytics-title">Trailing Happiness Data</Text>
-            <Line
-              data={sentiment}
-              width={450}
-              height={400}
-              options={{
-                legend: {
-                  position: 'top',
-                  display: false
-                }
-              }}
-            />
+            {this.state.hasMounted ? this.renderLineChart() : null}
           </div>
           <div className={styles.mainLineChart}>
             <Text type="analytics-title">Emotional Sum State</Text>
-            <Pie
-              data={pie}
-              width={450}
-              height={400}
-              options={{
-                legend: {
-                  position: 'top'
-                }
-              }}
-            />
+            {this.state.hasMounted ? this.renderPieChart() : null}
           </div>
         </div>
       </div>
