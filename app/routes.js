@@ -39,14 +39,18 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           System.import('containers/MainApp/reducer'),
+          System.import('containers/Notification/reducer'),
+          System.import('containers/Notification/sagas'),
           System.import('containers/MainApp/sagas'),
           System.import('containers/MainApp'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([reducer, notificationReducer, notificationSagas, sagas, component]) => {
           injectReducer('app', reducer.default);
+          injectReducer('notifications', notificationReducer.default);
+          injectSagas(notificationSagas.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });

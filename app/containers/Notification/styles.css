@@ -1,0 +1,29 @@
+.dropdownContainer {
+  flex: 1;
+  display: flex;
+  margin: 10px;
+  height: 100%;
+}
+
+.errorDropdown {
+  position: fixed;
+  border-radius: 3px;
+  top: 0;
+  right: 0;
+  margin: 30px;
+  padding: 10px;
+  display: block;
+  width: 400px;
+  z-index: 10;
+  background-color: #e95f5c;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+/*.errorDropdown:hover {
+  height: 50px;
+  display: block;
+  transition: 0.3s;
+  border-bottom: 1px solid #db4c2c;
+}*/

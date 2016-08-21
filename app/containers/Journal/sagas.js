@@ -11,6 +11,7 @@ import {
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { selectJournalDomain, selectJournal } from './selectors';
 import { getCurrentDate, getCurrentDateAlt, getExactDate } from 'utils/date';
+import { newError, newErrorAdded } from 'containers/Notification/actions';
 
 function* indicoSubmitAction() {
   try {
@@ -20,12 +21,15 @@ function* indicoSubmitAction() {
     body.date = getCurrentDate();
     body.dateAlt = getCurrentDateAlt();
     body.exactDate = getExactDate();
-    const data = yield call(postRequest, `${API_URL}/emotions`, body)
-    if (data.status === 200) {
-      console.log(data);
-      yield put(indicoSubmitSuccess(data.data));
-      yield call(fetchPostsAction);
-    }
+    yield put(newError({response: {
+      data: 'Sorry! Not Permitted in Hosted Demo.'
+    }}));
+    yield put(newErrorAdded());
+    // if (data.status === 200) {
+    //   console.log(data);
+    //   yield put(indicoSubmitSuccess(data.data));
+    //   yield call(fetchPostsAction);
+    // }
   } catch (error) {
 
     yield put(indicoSubmitError(error));

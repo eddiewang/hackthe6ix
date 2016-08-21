@@ -10,11 +10,13 @@ import selectMainApp from './selectors';
 import styles from './styles.css';
 
 import Navigation from 'components/Navigation';
+import Notification from 'containers/Notification';
 
 export class MainApp extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div className={styles.mainApp}>
+        <Notification />
         <Navigation />
         <div className={styles.mainContainer}>
           {this.props.children}
