@@ -44,3 +44,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.editor-date {
+  margin-top: 30px;
+  display: block;
+  color: #bbb;
+  font-family: "Kievet", Helvetica;
+  font-size: 18px;
+}

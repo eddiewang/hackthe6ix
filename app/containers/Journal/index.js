@@ -13,8 +13,9 @@ import Text from 'components/Text';
 import Post from 'components/Post';
 import PostBlock from 'components/PostBlock';
 import PostEditor from 'containers/PostEditor';
-import { Editor, EditorState } from 'draft-js';
-import * as moment from 'moment';
+import { Editor, EditorState, convertToRaw } from 'draft-js';
+
+import { editPost } from './actions';
 
 export class Journal extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -24,7 +25,13 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
       editorState: EditorState.createEmpty(),
     }
     this.handleClick = this.handleClick.bind(this);
-    this.onChange = (editorState) => this.setState({editorState});
+    this.onChange = (editorState) => {
+      const contentState = editorState.getCurrentContent();
+      const rawData = convertToRaw(contentState);
+      const stringData = rawData.blocks.map((block) => block.text).join();
+      this.props.dispatch(editPost(rawData));
+      this.setState({editorState});
+    };
   }
 
   handleClick() {
@@ -37,7 +44,6 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
       <div className={styles.journal}>
         { this.state.isNewPost ?
           <div className={styles.newPostModal}>
-
             <PostEditor editorState={this.state.editorState} handleChange={this.onChange}/>
           </div> :
           null

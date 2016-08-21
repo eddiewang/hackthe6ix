@@ -5,11 +5,12 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  EDIT_POST,
 } from './constants';
 
-export function defaultAction() {
+export function editPost(state) {
   return {
-    type: DEFAULT_ACTION,
-  };
+    type: EDIT_POST,
+    payload: state,
+  }
 }

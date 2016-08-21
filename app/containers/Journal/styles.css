@@ -27,11 +27,11 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  border-radius: 80px;
-  margin: 20px;
+  border-radius: 70px;
+  margin: 50px;
   background: #2C3E50;
-  height: 80px;
-  width: 80px;
+  height: 70px;
+  width: 70px;
   box-shadow: -1px 1px 8px 0px rgba(0,0,0,0.50);
 }
 
