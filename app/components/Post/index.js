@@ -30,13 +30,34 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
       )
     })
   }
+
+  filterKeywords() {
+    const sortable = [];
+    for (var word in this.props.keywords) {
+      sortable.push([word, this.props.keywords[word]])
+    }
+    const keywordArray = sortable.sort(
+      function(a, b) {
+        return b[1] - a[1]
+      }
+    );
+    return (
+      <div classNames={styles.keywords}>
+        {keywordArray[0] ? <li>{keywordArray[0][0]}</li> : null}
+        {keywordArray[1] ? <li>{keywordArray[1][0]}</li> : null}
+        {keywordArray[2] ? <li>{keywordArray[2][0]}</li> : null}
+      </div>
+    );
+  }
+
   filterTopEmotions() {
     const sortable = [];
-    for (var emotion in this.props.emotions)
-          sortable.push([emotion, this.props.emotions[emotion]])
+    for (var emotion in this.props.emotions) {
+      sortable.push([emotion, this.props.emotions[emotion]])
+    }
     const emotionArray = sortable.sort(
         function(a, b) {
-            return a[1] - b[1]
+            return b[1] - a[1]
         }
     );
 
@@ -57,7 +78,6 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
             default:
               return <li><img src={"#"}/></li>
           }
-
         })()
         }
       </div>);
@@ -72,6 +92,10 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
           </div>
           {this.props.data ? this.rehydrateContentState() : null}
           {this.props.emotions ? this.filterTopEmotions() : null}
+          {this.props.sentiment ? this.props.sentiment : null}
+          <div className={styles.keywords}>
+            {this.props.keywords ? this.filterKeywords() : <null></null>}
+          </div>
         </div>
       </div>
     );

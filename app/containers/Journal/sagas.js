@@ -10,7 +10,7 @@ import {
   fetchPostsError, } from './actions';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { selectJournalDomain, selectJournal } from './selectors';
-import { getCurrentDate, getCurrentDateAlt } from 'utils/date';
+import { getCurrentDate, getCurrentDateAlt, getExactDate } from 'utils/date';
 
 function* indicoSubmitAction() {
   try {
@@ -19,6 +19,7 @@ function* indicoSubmitAction() {
     delete body["posts"];
     body.date = getCurrentDate();
     body.dateAlt = getCurrentDateAlt();
+    body.exactDate = getExactDate();
     const data = yield call(postRequest, `${API_URL}/emotions`, body)
     if (data.status === 200) {
       console.log(data);

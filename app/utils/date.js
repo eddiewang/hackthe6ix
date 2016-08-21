@@ -17,3 +17,8 @@ export function getCurrentDateAlt() {
   const year = d.getFullYear();
   return `${month}/${day}/${year}`;
 }
+
+export function getExactDate() {
+  const d = new Date().toISOString();
+  return d;
+}

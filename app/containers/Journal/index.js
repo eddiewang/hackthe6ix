@@ -47,13 +47,15 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
   handleIndicoClick() {
     this.props.dispatch(indicoSubmit());
     this.setState({isNewPost: false});
+    const newState = EditorState.createEmpty();
+    this.onChange(newState);
   }
 
   renderPosts() {
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
       console.log(key)
-      postArray.push(<Post emotions={this.props.posts.posts[key].emotions} key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+      postArray.push(<Post keywords={this.props.posts.posts[key].keywords} emotions={this.props.posts.posts[key].emotions} key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
     });
     return postArray.reverse();
   }

@@ -22,6 +22,7 @@
 }
 
 .emotions li{
+  float: left;
   display: inline-block;
   list-style: none;
   margin-right: 10px;
@@ -29,4 +30,17 @@
 
 .emotions img {
   height: 50px;
+}
+
+.keywords {
+  float: right;
+}
+
+.keywords li {
+  list-style: none;
+  display: inline-block;
+  padding: 15px 20px;
+  margin-left: 10px;
+  border-radius: 3px;
+  background: #eee;
 }

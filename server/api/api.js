@@ -12,14 +12,17 @@ router.post('/emotions', (req, res) => {
   const promiseKeywords = indico.keywords(stringState);
 
   Promise.all([promiseEmotion, promiseSentiment, promiseKeywords])
-    .then(([emotion, sentiment, keywords]) => {
+    .then(([emotions, sentiment, keywords]) => {
       const postObject = {
         ...req.body,
-        emotion,
+        emotions,
         sentiment,
         keywords,
+        userId: 1,
       }
       console.log(postObject);
+      fb.saveEntry(postObject);
+
       res.status(200).json(postObject);
     })
     .catch((err) => {
