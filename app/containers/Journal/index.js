@@ -53,7 +53,7 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
       console.log(key)
-      postArray.push(<Post key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+      postArray.push(<Post emotions={this.props.posts.posts[key].emotions} key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
     });
     return postArray.reverse();
   }
