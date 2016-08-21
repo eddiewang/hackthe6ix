@@ -75,3 +75,11 @@
   font-family: Helvetica;
   font-size: 18px;
 }
+
+.logo-continue {
+  display: block;
+  margin-top: 20px;
+  color: #ddd;
+  font-family: Helvetica;
+  font-size: 12px;
+}

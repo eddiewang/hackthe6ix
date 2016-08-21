@@ -19,6 +19,10 @@
   line-height: 42px;
 }
 
+.editorWrapper * {
+  height: 100%;
+}
+
 .button {
   border: 1px solid #2C3E50;
   font-family: "Charter", Helvetica;

@@ -33,6 +33,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
           <Text type="logo">reflct</Text>
           </div>
           <Text type="logo-sub">Track your state of mind <br /> A self tracking Diary</Text>
+          <Text type="logo-continue">Click anywhere to continue</Text>
         </div>
       </div>
     );
