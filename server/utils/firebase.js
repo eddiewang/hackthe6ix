@@ -42,7 +42,7 @@ module.exports = {
 
    retrieveEntryByUser: function(user, cb){
       var currentRef = userRef.child(user.id);
-      currentRef.on("value", function(snapshot) {
+      currentRef.once("value", function(snapshot) {
          cb(snapshot.val());
       }, function (errorObject) {
          console.log("Retrieving the posts from " + user.name);

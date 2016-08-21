@@ -22,7 +22,7 @@ const initialState = fromJS({
   emotions: {},
   tags: {},
   errors: '',
-  posts: [],
+  posts: {},
 });
 
 function journalReducer(state = initialState, action) {

@@ -10,15 +10,15 @@ router.post('/emotions', (req, res) => {
   indico
     .emotion(stringState)
     .then((data) => {
-      let post = {...req.body, emotions: data, userId: 1}
-      console.log(post);
+      const post = {...req.body, emotions: data, userId: 1}
       fb.saveEntry(post)
-      res.status(200).send(data);
+      res.status(200).json(post);
     })
     .catch((err) => {
       console.log(err);
-      res.status(401).send(err);
+      res.status(401).json(err);
     })
+
 });
 
 router.get('/posts', (req, res) => {

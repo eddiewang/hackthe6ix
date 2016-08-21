@@ -30,7 +30,7 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
     this.onChange = (editorState) => {
       const contentState = editorState.getCurrentContent();
       const rawData = convertToRaw(contentState);
-      const stringData = rawData.blocks.map((block) => block.text).join();
+      const stringData = rawData.blocks.map((block) => block.text).join('\\n');
       this.props.dispatch(editPost({rawData, stringData}));
       this.setState({editorState});
     };
@@ -46,14 +46,24 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
 
   handleIndicoClick() {
     this.props.dispatch(indicoSubmit());
+    this.setState({isNewPost: false});
   }
 
   renderPosts() {
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
-      postArray.push(<Post data={this.props.posts.posts[key].contentState} />);
+      console.log(key)
+      postArray.push(<Post key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
     });
-    return postArray;
+    return postArray.reverse();
+  }
+
+  renderPostBlock() {
+    var postArray = [];
+    Object.keys(this.props.posts.posts).forEach((key) => {
+      postArray.push(<PostBlock key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+    });
+    return postArray.reverse();
   }
 
   render() {

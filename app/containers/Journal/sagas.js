@@ -1,4 +1,4 @@
-import { take, call, put, select, fork} from 'redux-saga/effects';
+import { take, call, put, select, fork, cancel} from 'redux-saga/effects';
 import { postRequest, getRequest } from 'utils/request';
 import { API_URL } from 'global';
 import { INDICO_SUBMIT, FETCH_POSTS } from './constants';
@@ -9,14 +9,20 @@ import {
   fetchPostsSuccess,
   fetchPostsError, } from './actions';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { selectJournalDomain } from './selectors';
+import { selectJournalDomain, selectJournal } from './selectors';
+import { getCurrentDate } from 'utils/date';
 
 function* indicoSubmitAction() {
   try {
+    const body = yield select(selectJournal());
+    console.log(body);
+    delete body["posts"];
+    body.date = getCurrentDate();
     const data = yield call(postRequest, `${API_URL}/emotions`, body)
     if (data.status === 200) {
       console.log(data);
       yield put(indicoSubmitSuccess(data.data));
+      yield call(fetchPostsAction);
     }
   } catch (error) {
 

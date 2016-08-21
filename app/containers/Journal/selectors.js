@@ -22,4 +22,5 @@ const selectJournal = () => createSelector(
 export default selectJournal;
 export {
   selectJournalDomain,
+  selectJournal
 };
