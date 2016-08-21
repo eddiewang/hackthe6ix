@@ -49,9 +49,11 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
   }
 
   renderPosts() {
+    var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
-      return (<Post data={this.props.posts.posts[key].contentState} />);
-    })
+      postArray.push(<Post data={this.props.posts.posts[key].contentState} />);
+    });
+    return postArray;
   }
 
   render() {
