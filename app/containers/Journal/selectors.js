@@ -19,8 +19,13 @@ const selectJournal = () => createSelector(
   (substate) => substate.toJS()
 );
 
+const selectPosts = () => createSelector(
+  selectJournal(),
+  (state) => state.posts.toJS()
+);
 export default selectJournal;
 export {
   selectJournalDomain,
-  selectJournal
+  selectJournal,
+  selectPosts
 };

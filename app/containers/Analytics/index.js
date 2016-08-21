@@ -9,12 +9,13 @@ import { connect } from 'react-redux';
 import selectAnalytics from './selectors';
 import styles from './styles.css';
 import {Line} from 'react-chartjs-2';
+import { selectPosts } from 'containers/Journal/selectors';
 
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: 'Joy',
       fill: false,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -59,7 +60,7 @@ export class Analytics extends React.Component { // eslint-disable-line react/pr
   }
 }
 
-const mapStateToProps = selectAnalytics();
+const mapStateToProps = selectPosts();
 
 function mapDispatchToProps(dispatch) {
   return {
