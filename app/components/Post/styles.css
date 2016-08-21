@@ -23,13 +23,16 @@
 }
 
 .emojiContainer img {
-  height: 99%;
-  width: 99%;
+  height: 90%;
+  width: 90%;
+  border-radius: 50px;
+  box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.50);
 }
 
 .emojiContainer {
   float: right;
   margin-top: none;
+  padding-top: none;
 }
 
 .emojiContainer ul {

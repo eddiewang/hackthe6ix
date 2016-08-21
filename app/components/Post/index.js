@@ -31,16 +31,16 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
           <ul>
             <li>
 
-            // <svg width="200" height="200">
-            //   <linearGradient id="lg" x1="0.5" y1="1" x2="0.5" y2="0">
-            //       <stop offset="0%" stop-opacity="1" stop-color="blue"/>
-            //       <stop offset="40%" stop-opacity="1" stop-color="blue"/>
-            //       <stop offset="40%" stop-opacity="0" stop-color="blue"/>
-            //       <stop offset="100%" stop-opacity="0" stop-color="blue"/>
-            //   </linearGradient>
+            <svg width="200" height="200">
+              <linearGradient id="lg" x1="0.5" y1="1" x2="0.5" y2="0">
+                  <stop offset="0%" stop-opacity="1" stop-color="blue"/>
+                  <stop offset="40%" stop-opacity="1" stop-color="blue"/>
+                  <stop offset="40%" stop-opacity="0" stop-color="blue"/>
+                  <stop offset="100%" stop-opacity="0" stop-color="blue"/>
+              </linearGradient>
 
-            // <circle cx="50" cy="50" r="45" fill="url(#lg)" stroke="crimson" stroke-width="5"/>
-            // </svg>
+            <circle cx="50" cy="50" r="45" fill="url(#lg)" stroke="crimson" stroke-width="5"/>
+            </svg>
 
               <img src={JoyEmoji}/>
             </li>
