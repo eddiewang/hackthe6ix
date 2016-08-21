@@ -8,3 +8,12 @@ export function getCurrentDate() {
   const year = d.getFullYear();
   return `${weekday}, ${month} ${day}, ${year}`;
 }
+
+export function getCurrentDateAlt() {
+  const d = new Date();
+  const weekday = d.getDay();
+  const month = d.getMonth();
+  const day = d.getDate();
+  const year = d.getFullYear();
+  return `${month}/${day}/${year}`;
+}

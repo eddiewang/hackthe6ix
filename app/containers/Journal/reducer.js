@@ -18,6 +18,7 @@ const initialState = fromJS({
   contentState: {},
   stringState: '',
   date: '',
+  dateAlt: '',
   sentiments: {},
   emotions: {},
   tags: {},

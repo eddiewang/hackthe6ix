@@ -61,7 +61,7 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
   renderPostBlock() {
     var postArray = [];
     Object.keys(this.props.posts.posts).forEach((key) => {
-      postArray.push(<PostBlock key={key} date={this.props.posts.posts[key].date} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
+      postArray.push(<PostBlock key={key} date={this.props.posts.posts[key].dateAlt} data={this.props.posts.posts[key].stringState.split(/\r\n|\r|\n/g)} />);
     });
     return postArray.reverse();
   }
@@ -77,7 +77,7 @@ export class Journal extends React.Component { // eslint-disable-line react/pref
           null
         }
         <div className={styles.postBlockContainer}>
-          <PostBlock />
+          {this.props.posts.posts ?this.renderPostBlock() :null}
         </div>
         <div className={styles.postsContainer}>
           {this.props.posts.posts ? this.renderPosts() : null }
