@@ -42,7 +42,7 @@ class Post extends React.Component { // eslint-disable-line react/prefer-statele
       }
     );
     return (
-      <div classNames={styles.keywords}>
+      <div className={styles.keywords}>
         {keywordArray[0] ? <li>{keywordArray[0][0]}</li> : null}
         {keywordArray[1] ? <li>{keywordArray[1][0]}</li> : null}
         {keywordArray[2] ? <li>{keywordArray[2][0]}</li> : null}

@@ -21,7 +21,21 @@ const selectJournal = () => createSelector(
 
 const selectPosts = () => createSelector(
   selectJournal(),
-  (state) => state.posts.toJS()
+  (state) => {
+    const sorted = [];
+
+    for (var key in state.posts.posts) {
+      sorted.push([key, state.posts.posts[key]])
+    }
+
+    const chronoArray = sorted.sort(
+        function(a, b) {
+            return Date.parse(a[1].exactDate) - Date.parse(b[1].exactDate);
+        }
+    );
+
+    return chronoArray;
+  }
 );
 export default selectJournal;
 export {

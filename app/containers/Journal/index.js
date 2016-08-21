@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import selectJournal from './selectors';
 import styles from './styles.css';
-
 import Text from 'components/Text';
 import Post from 'components/Post';
 import PostBlock from 'components/PostBlock';

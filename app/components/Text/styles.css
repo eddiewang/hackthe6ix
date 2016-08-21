@@ -52,3 +52,15 @@
   font-family: "Kievet", Helvetica;
   font-size: 18px;
 }
+
+.sentiment {
+  font-size: 32px;
+}
+
+.analytics-title {
+  font-size: 24px;
+  display: block;
+  text-align: center;
+  color: #2C3E50;
+  margin-bottom: 20px;
+}

@@ -12,6 +12,11 @@
   justify-content: center;
 }
 
+.statsPanel {
+  display: flex;
+  height: 400px;
+  width: 100vw;
+}
 
 .pieChartsPanel {
   display: flex;
